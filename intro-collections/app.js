@@ -12,13 +12,13 @@ Book = Backbone.Model.extend({
 
 var myBook = new Book()
 
-myBook.set("id",1)
+myBook.set("id",3)
 
-myBook.fetch({
-  success: function(model, res, options){
-    console.log(model.get("name"));
+myBook.destroy({
+  success: function(){
+    console.log('Delete successfully');
   },
-  error: function(err){
-    console.log(err);
+  error: function(){
+    console.log('An error ocurred');
   }
-})
+},{wait: true});
