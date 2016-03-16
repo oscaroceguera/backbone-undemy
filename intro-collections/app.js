@@ -32,7 +32,7 @@ var myLibrary = new Library()
 // for collection exist
 myLibrary.push({name:"the alchemist", author:"paulo cohelo", year:"1993"})
 
-myLibrary.unshift({name:"Borrachadas", author:"Ramos ramon", year:"1985"})
+myLibrary.push({name:"Borrachadas", author:"Ramos ramon", year:"1985"})
 
 myLibrary.add({name:"Borrachadas", author:"Ramos ramon", year:"1989", cid:"c2"}, {merge:true})
 
@@ -47,6 +47,10 @@ myLibrary.add(sampleBook)
 
 console.log(myLibrary.models);
 
-myLibrary.remove(sampleBook)
+// Remove the last
+//myRemovedModel = myLibrary.pop()
 
-console.log(myLibrary.models);
+// revove the first
+myRemovedModel = myLibrary.shift()
+
+console.log(myRemovedModel);
