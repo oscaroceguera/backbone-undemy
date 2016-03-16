@@ -1,11 +1,7 @@
 // create a model
 Book = Backbone.Model.extend({
   urlRoot: "https://emmett-api.herokuapp.com/api/admin/users",
-	initialize: function(){
-    this.on("invalid", function(model, error){
-      console.log(error);
-    })
-	},
+
 	// the defaults are the initial values of your
   // attributes until they are changed by the new model
 	defaults: {
@@ -13,14 +9,16 @@ Book = Backbone.Model.extend({
   	author: "No one",
   	year: "No year"
   },
-  validate: function(attrs){
-    if(attrs.author == "No one"){
-      return "please enter the author name"
-    }
-  }
 });
 
 var myBook = new Book();
-myBook.set("name", "king of flies")
+myBook.set("id", 1)
 
-myBook.save()
+myBook.fetch({
+  success: function(model, res, options){
+    console.log(model.get("name"));
+  },
+  error: function(err){
+    console.log(err);
+  }
+})
