@@ -49,7 +49,7 @@ var LibraryView = Backbone.View.extend({
 
   },
 
-  template: _.template($("#books-template").html()),
+  template: Handlebars.compile($("#books-template").html()),
 
   render: function(){
     var self = this
@@ -63,6 +63,7 @@ var LibraryView = Backbone.View.extend({
 
 myLibrary.fetch({
   success: function(){
+    myLibrary.get({'id':2}).set('published', true)
     var myView = new LibraryView()
     //myView.remove()
   }

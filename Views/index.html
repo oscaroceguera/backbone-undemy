@@ -5,11 +5,15 @@
 	</head>
 	<body>
 
-    <!-- Underscore templating -->
-    <script id="books-template" type="text/template">
-      <% for (var i =0; i < library.length; i++){ %>
-          <li><%= library[i].name %></li>
-      <% } %>
+    <!-- Template: handlebars -->
+    <script id="books-template" type="text/x-handlebars-template">
+      {{#each library}}
+        {{! this is the book title}}
+        <li>Book title: {{name}} by <em>{{author}}</em></li>
+        {{#if published}}<span>-<u>Publised</u></span>{{/if}}
+        {{#unless published}}<span>-<u>Publised</u></span>{{/unless}}
+
+      {{/each}}
     </script>
 
     <ul id="boo-list">
@@ -18,6 +22,7 @@
 		<script src="jquery-2.1.4.min.js"></script>
 		<script src="underscore-min.js"></script>
 		<script src="backbone-min.js"></script>
+    <script src="handlebars.js"></script>
 		<script src="app.js"></script>
 	</body>
 </html>
