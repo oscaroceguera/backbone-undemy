@@ -1,7 +1,11 @@
 Book = Backbone.Model.extend({
   urlRoot: 'http://localhost:8080/books/',
   initialize: function(){
-    // define
+    // define a listener for invalid model detection
+    // The error parameter is apssed to the Function
+    this.on("invalid", function(model, error){
+      console.log(error);
+    })
   },
   defaults: {
     name: 'book title',
@@ -10,15 +14,23 @@ Book = Backbone.Model.extend({
   }
 })
 
-var myBook = new Book()
-
-myBook.set("id",3)
-
-myBook.destroy({
-  success: function(){
-    console.log('Delete successfully');
-  },
-  error: function(){
-    console.log('An error ocurred');
+var Library = Backbone.Collection.extend({
+  model:Book,
+  initialize: function(){
+    // Here yo can add ypur event listeners
   }
-},{wait: true});
+})
+
+var myLibrary = new Library()
+
+// for begining collection
+//myLibrary.add([{name:"the alchemist", autor:"paulo cohelo", year:"1993"},{name:"Borrachadas", autor:"Ramos ramon", year:"1985"}])
+
+// for collection exist
+myLibrary.push({name:"the alchemist", author:"paulo cohelo", year:"1993"})
+
+myLibrary.unshift({name:"Borrachadas", author:"Ramos ramon", year:"1985"})
+
+myLibrary.add({name:"Borrachadas", author:"Ramos ramon", year:"1989", cid:"c2"}, {merge:true})
+
+console.log(myLibrary.models);
