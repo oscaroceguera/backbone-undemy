@@ -1,30 +1,34 @@
 // create a model
-var myBook = Backbone.Model.extend({
+Book = Backbone.Model.extend({
 	initialize: function(){
-	   this.on("change", function(model,error){
-       //console.log('the model has change');
-     })
+    this.on("invalid", function(model, error){
+      console.log(error);
+    })
 	},
-	// attributes
-	name: "No Title",
-	author: "No one",
-	year: "No year"
+  validate: function(attrs){
+    if(attrs.name == ""){
+      return 'Please enter a title for the book'
+    }
+    if(attrs.author == ""){
+      return "please enter an author for the book"
+    }
+    if(attrs.year > 2015){
+      return "please enter a valid year"
+    }
+  },
+	// the defaults are the initial values of your
+  // attributes until they are changed by the new model
+	defaults: {
+    name: "No Title",
+  	author: "No one",
+  	year: "No year"
+  }
 });
 
-var newBook = new myBook({
-  name: "Harry Potter",
-  author: "J.K. Rowling",
-  year: 2000
-});
 
+var newBook = new Book();
 
-// newBook.set({'year':1995},{silent: true})
+newBook.set({"name":""}, {validate:true})
+newBook.set({"year":2020}, {validate:true})
 
-newBook.set({'year':1995})
-newBook.set({'name':'The animal farm'})
-
-if (newBook.hasChanged("name")){
-  console.log('the name of the book has changed');
-}
-
-console.log(JSON.stringify(newBook.changed));
+console.log("Is this model valid? ", newBook.isValid());
