@@ -24,10 +24,23 @@ function nameHandler(model){
 function anotherNameHandler(model){
   console.log('This is another name handler');
 }
-
-myBook.once("change:name", anotherNameHandler)
-
-myBook.set("name","The Hunger Games")
-myBook.set("name","Gassparin")
+//
+// myBook.once("change:name", anotherNameHandler)
+//
+// myBook.set("name","The Hunger Games")
+// myBook.set("name","Gassparin")
 // secondBook.on('change:name', anotherNameHandler)
 // secondBook.set('name', 'Harry Potter')
+
+var BookView = Backbone.View.extend({
+  el: "div",
+  render: function(){
+    console.log('This is the render function');
+  }
+})
+
+var myView = new BookView();
+myView.listenTo(myBook, "change:author", myView.render)
+myBook.set("author", "Aurthur Milley")
+myView.stopListening(myBook)
+myBook.set("author", "Carlos Oceguera")
