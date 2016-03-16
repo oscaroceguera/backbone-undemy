@@ -11,7 +11,14 @@ Book = Backbone.Model.extend({
 })
 
 var myBook = new Book()
-myBook.set('id', 4)
 
-myBook.set("name", "OSCAR OCEGUERA")
-myBook.save()
+myBook.set("id",1)
+
+myBook.fetch({
+  success: function(model, res, options){
+    console.log(model.get("name"));
+  },
+  error: function(err){
+    console.log(err);
+  }
+})
