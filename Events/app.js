@@ -15,10 +15,19 @@ Book = Backbone.Model.extend({
 });
 
 var myBook = new Book();
-myBook.on("change:name change:year", function(model){
-  console.log('Changes in Model ', model.cid);
-})
 
+function nameHandler(model){
+  console.log('The name of book has changed');
+}
+
+function anotherNameHandler(model){
+  console.log('This is another name handler');
+}
+
+myBook.on("change:name", nameHandler)
+myBook.on("change:name", anotherNameHandler)
+
+//myBook.set("year","2013")
+
+myBook.off('change:name', anotherNameHandler)
 myBook.set("name","The Hunger Games")
-myBook.set("year","2013")
-console.log(myBook);
