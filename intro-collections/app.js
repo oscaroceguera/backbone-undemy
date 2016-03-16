@@ -34,23 +34,37 @@ myLibrary.push({name:"the alchemist", author:"paulo cohelo", year:"1993"})
 
 myLibrary.push({name:"Borrachadas", author:"Ramos ramon", year:"1985"})
 
-myLibrary.add({name:"Borrachadas", author:"Ramos ramon", year:"1989", cid:"c2"}, {merge:true})
-
 // new model
 var sampleBook = new Book({
   name: 'Sample Book',
   author: 'Sample Author',
   year: '2003'
 })
-
 myLibrary.add(sampleBook)
 
 console.log(myLibrary.models);
 
-// Remove the last
-//myRemovedModel = myLibrary.pop()
+otherModelsArray = [
+  {
+    name: 'Book 1',
+    author: 'Author 1',
+    year: '2001'
+  },
+  {
+    name: 'Book 2',
+    author: 'Author 2',
+    year: '2002'
+  },
+  {
+    name: 'Book 3',
+    author: 'Author 3',
+    year: '2003'
+  }
+]
 
-// revove the first
-myRemovedModel = myLibrary.shift()
+myLibrary.reset(otherModelsArray)
 
-console.log(myRemovedModel);
+//myLibrary.reset()
+// $ -> []
+
+console.log(myLibrary.models);
