@@ -15,6 +15,7 @@ Book = Backbone.Model.extend({
 });
 
 var myBook = new Book();
+var secondBook = new Book();
 
 function nameHandler(model){
   console.log('The name of book has changed');
@@ -24,10 +25,9 @@ function anotherNameHandler(model){
   console.log('This is another name handler');
 }
 
-myBook.on("change:name", nameHandler)
-myBook.on("change:name", anotherNameHandler)
+myBook.once("change:name", anotherNameHandler)
 
-//myBook.set("year","2013")
-
-myBook.off('change:name', anotherNameHandler)
 myBook.set("name","The Hunger Games")
+myBook.set("name","Gassparin")
+// secondBook.on('change:name', anotherNameHandler)
+// secondBook.set('name', 'Harry Potter')
