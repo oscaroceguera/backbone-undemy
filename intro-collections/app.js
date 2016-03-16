@@ -1,3 +1,4 @@
+// REMOVING MODELS FROM COLLECTION
 Book = Backbone.Model.extend({
   urlRoot: 'http://localhost:8080/books/',
   initialize: function(){
@@ -17,7 +18,9 @@ Book = Backbone.Model.extend({
 var Library = Backbone.Collection.extend({
   model:Book,
   initialize: function(){
-    // Here yo can add ypur event listeners
+    this.on("remove", function(removedModel, models, options){
+      console.log("we remover model at index", options.index);
+    })
   }
 })
 
@@ -32,5 +35,18 @@ myLibrary.push({name:"the alchemist", author:"paulo cohelo", year:"1993"})
 myLibrary.unshift({name:"Borrachadas", author:"Ramos ramon", year:"1985"})
 
 myLibrary.add({name:"Borrachadas", author:"Ramos ramon", year:"1989", cid:"c2"}, {merge:true})
+
+// new model
+var sampleBook = new Book({
+  name: 'Sample Book',
+  author: 'Sample Author',
+  year: '2003'
+})
+
+myLibrary.add(sampleBook)
+
+console.log(myLibrary.models);
+
+myLibrary.remove(sampleBook)
 
 console.log(myLibrary.models);
