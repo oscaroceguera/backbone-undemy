@@ -1,3 +1,5 @@
+// ------------------ MODEL ----------------------
+
 Book = Backbone.Model.extend({
 	urlRoot: "http://localhost:8080/books/",
 	initialize: function(){
@@ -14,51 +16,33 @@ Book = Backbone.Model.extend({
 	}
 });
 
+// ------------------ COLLECTION ----------------------
+
 var Library = Backbone.Collection.extend({
 	model:Book,
-  url: 'http://localhost:8080/books/',
-	initialize: function(){
-		this.on("remove",function(removedModel,models,options){
-			console.log("We removed model at index " + options.index);
-		})
-	}
+  url: 'http://localhost:8080/books/'
 });
 
 var myLibrary = new Library();
 
-// myLibrary.add([{name:"The Alchemist",author:"Paulo Coehlo",year:"1993"},{name:"Lord of Flies",author:"William Goodwing",year:"1953"}]);
+// ------------------ VIEW ----------------------
 
-var sampleBook = new Book({
-	name: "Sample Book",
-	author: "Sample Author",
-	year: "2003"
-})
-
-myLibrary.add(sampleBook);
-
-myLibrary.push({name:"The Alchemist",author:"Paulo Coehlo",year:"1993"});
-myLibrary.push({name:"Lord of Flies",author:"William Goodwing",year:"1953"});
-myLibrary.push({name:"Lord of Flies 2",author:"William Goodwing",year:"1953"});
-
-myLibrary.forEach(function(model){
-  model.save()
-})
-
-var myModel = new Book({
-  name: "Created and saved book",
-  author: "ahmed",
-  year: 2015
-})
-
-myLibrary.create(myModel)
-
-myLibrary.fetch({
-  success: function(){
-    console.log('Collection retreived from the server');
+var LibraryView = Backbone.View.extend({
+  collection: myLibrary,
+  el: 'ul',
+  id: 'book-list',
+  initialize: function(){
+    this.render()
   },
-  error: function(){
-    console.log('An error happend');
+  render: function(){
+    var template = _.template($("#books-template").html())
+    var output = template({'library': this.collection.toJSON()})
+    this.$el.append(output)
   }
 })
 
-console.log(myLibrary.models);
+myLibrary.fetch({
+  success: function(){
+    var myView = new LibraryView()
+  }
+})
