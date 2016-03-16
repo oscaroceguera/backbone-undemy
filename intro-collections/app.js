@@ -38,36 +38,36 @@ myLibrary.add(sampleBook);
 myLibrary.push({name:"The Alchemist",author:"Paulo Coehlo",year:"1993"});
 
 myLibrary.push({name:"Lord of Flies",author:"William Goodwing",year:"1953"});
+myLibrary.push({name:"Lord of Flies 2",author:"William Goodwing",year:"1953"});
 
+console.log('--- get id with cid  ---');
+console.log(myLibrary.get("c1"));
 
-console.log(myLibrary.models);
+console.log('--- Index ----');
+console.log(myLibrary.at(1));
 
-// otherModelsArray = [{
-// 	name: "Book 1",
-// 	author : "Author 1",
-// 	year: "2001"
-// 	},
-// 	{
-// 	name: "Book 2",
-// 	author : "Author 2",
-// 	year: "2002"
-// 	},
-// 	{
-// 	name: "Book 3",
-// 	author : "Author 3",
-// 	year: "2003"
-// 	},
-// ];
+console.log('--- loop ---');
+for(var i = 0; i < myLibrary.length; i++){
+  console.log(myLibrary.at(i));
+  // console.log(myLibrary.at(i).get('name'));
+}
 
-//myLibrary.set(otherModelsArray, {remove: false})
+console.log('--- Loop with underscore.js ---');
+myLibrary.forEach(function(model){
+  //console.log(model);
+  console.log(model.get('author'));
+})
 
-updateArray = [
-	{name: "New Sample Book",author: "Sample Author", year: "2010",cid:"c1"},
-	{name: "The Alchemist (updated)",author: "Paulo Coehlo", year: "1993",cid:"c2"},
-	//{name: "Lord of Flies (new edition)",author: "Paulo Coehlo", year: "2003",cid:"c3"},
-];
+console.log('--- pluck underscore---');
+console.log(myLibrary.pluck("name"));
 
-//myLibrary.set(updateArray)
-//myLibrary.set(updateArray, {merge:false})
-myLibrary.set(updateArray, {remove:false})
-console.log(myLibrary.models);
+console.log('--- Where underscore ---');
+console.log(myLibrary.where({name:'The Alchemist'}));
+console.log(myLibrary.where({year:'1993'}));
+
+console.log('--- findwhere underscore ---');
+console.log(myLibrary.findWhere({name:"Lord of Flies"}));
+console.log(myLibrary.findWhere({year:"1953"}));
+
+console.log('--- GroupBy underscore ---');
+console.log(myLibrary.groupBy({year:'1953'}));
