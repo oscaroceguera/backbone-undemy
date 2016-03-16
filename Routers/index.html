@@ -6,17 +6,22 @@
 	<body>
 
     <!-- Template: handlebars -->
-    <script id="books-template" type="text/x-handlebars-template">
-      {{#each library}}
-        {{! this is the book title}}
-        <li>Book title: {{name}} by <em>{{author}}</em></li>
-        {{#if published}}<span>-<u>Publised</u></span>{{/if}}
-        {{#unless published}}<span>-<u>Publised</u></span>{{/unless}}
-
-      {{/each}}
+    <script id="books-template" type="text/template">
+      <table>
+        <tr>
+          <td>Title</td>
+          <td><=% book.name %></td>
+        </tr>
+        <tr>
+          <td>Author</td>
+          <td><=% book.author %></td>
+        </tr>
+      </table>
+      <button type="button" name="button" id="preview">Preview</button>
+      <button type="button" name="button" id="next">Next</button>
     </script>
 
-    <ul id="boo-list">
+    <ul id="boo-view">
     </ul>
 
 		<script src="jquery-2.1.4.min.js"></script>
