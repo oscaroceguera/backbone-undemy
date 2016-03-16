@@ -1,27 +1,30 @@
 // create a model
 var myBook = Backbone.Model.extend({
 	initialize: function(){
-		console.log("The book is initialized");
+	   this.on("change", function(model,error){
+       //console.log('the model has change');
+     })
 	},
 	// attributes
-	Title: "No Title",
-	Author: "No one",
-	Year: "No year"
+	name: "No Title",
+	author: "No one",
+	year: "No year"
 });
 
 var newBook = new myBook({
-  Title: "Harry Potter",
-  Author: "J.K. Rowling",
-  Year: 2000
+  name: "Harry Potter",
+  author: "J.K. Rowling",
+  year: 2000
 });
 
-console.log("thie title of the new book is: ", newBook.get("Title"));
-console.log('the published year is : ', newBook.get('Year'));
 
-newBook.set("Year", 1999)
+// newBook.set({'year':1995},{silent: true})
 
-console.log('the published year is : ', newBook.get('Year'));
+newBook.set({'year':1995})
+newBook.set({'name':'The animal farm'})
 
-newBook.unset("Year")
+if (newBook.hasChanged("name")){
+  console.log('the name of the book has changed');
+}
 
-console.log('the published year is : ', newBook.get('Year'));
+console.log(JSON.stringify(newBook.changed));
