@@ -9,7 +9,6 @@ com.eduonix.view.Timelineview = Backbone.View.extend({
   initialize : function(options){
     var self = this
     self.timeline = new com.eduonix.collection.Timeline()
-    console.log(self.timeline);
     self.render()
     self.timeline.fetch({reset:true})
     self.listenTo(self.timeline, 'reset', self.render)

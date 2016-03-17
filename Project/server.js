@@ -8,10 +8,10 @@ var client = null;
 
 function connectToTwitter(){
 	client = new Twit({
-		consumer_key	      :	"c1tBQAN8cFrAke88TqE4RqTRE",
-		consumer_secret	    : "zszzwjNvsW2cadh3gJPSqkVAjzIPSNdAgaZm5VbbUJ9GN4TJI3",
-		access_token	      : "3982636277-JsPPVLFB5Tvu6zY6jpXNnHwJ1NWvdLcaAxPV2A2",
-		access_token_secret	: "KY3vZXOPJtgkyv5EDrsvfQxt4LYbfv109mer3nGEcXaV6"
+		consumer_key	      :	"P4CAUvU8bYqSk5Vt4YvNinGOR",
+		consumer_secret	    : "NDRZ5j8OF0a0InfaTdnHpBUrzixZfY7q4xaGFQHFGZbjQ5Gp7g",
+		access_token	      : "178225758-hTCl9k1QKYBuWNjSt6v4vC8ow15bpAH6JJpPvhNY",
+		access_token_secret	: "WKGdhWOjks6mbZ3dJs4nhnXg3mbS6vGcrfODvSq9bZtoO"
 	})
 }
 //Make the client connect to Twitter
