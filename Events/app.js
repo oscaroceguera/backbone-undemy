@@ -34,13 +34,27 @@ function anotherNameHandler(model){
 
 var BookView = Backbone.View.extend({
   el: "div",
-  render: function(){
-    console.log('This is the render function');
+  render: function(payload){
+    console.log('This is the render function. The payload is ', payload.data);
   }
 })
 
 var myView = new BookView();
-myView.listenTo(myBook, "change:author", myView.render)
-myBook.set("author", "Aurthur Milley")
-myView.stopListening(myBook)
-myBook.set("author", "Carlos Oceguera")
+
+myView.listenTo(myBook, "change:name", myView.render)
+
+myBook.trigger("change:name", {data: "this is the payload"})
+
+function customHandler(){
+  console.log('we have ran out of stock');
+}
+
+Backbone.on("myBook:empty", customHandler)
+
+myBook.on("change",function(){
+  if(myBook.get('stock') == 0 && myBook.get('reserve') == 0){
+    Backbone.trigger('myBook:empty', {})
+  }
+})
+myBook.set("reserve",0)
+myBook.set("stock",0)
