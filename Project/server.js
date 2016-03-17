@@ -46,7 +46,7 @@ app.get('/timeline', function (request, response) {
 });
 app.get('/profile', function(request, response){
 	response.header('Access-Control-Allow-Origin', '*');
-	client.get('users/show', {screen_name: 'ahmed_eduonix'}, function (err, reply) {
+	client.get('users/show', {screen_name: 'oscarOcegueraB'}, function (err, reply) {
 		if(err){
 			console.log('Error: ' + err);
 			response.send(404);

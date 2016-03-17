@@ -11,9 +11,11 @@
         <h2>My tweets</h2>
       </div>
       <div class="row">
-        <div id="timeline"></div>
+        <div id="timeline" class="col-md-6"></div>
+        <div id="profile-view" class="col-md-4 pull-right"></div>
       </div>
     </div>
+
 
     <!-- Handlebars timeline template -->
     <script type="text/a-handlebars-template" id="timeline-template">
@@ -35,6 +37,19 @@
       </ul>
     </script>
 
+    <script type="text/a-handlebars-template" id="profile-template">
+      <div class="col-md-2">
+        <img src="{{user.profile_image_url}}" />
+      </div>
+      <div class="col-md-10">
+        <h3 style="margin-top:0">{{user.name}}</h3>
+        <p>{{user.description}}</p>
+        <p class="pull-right">
+          <strong>Followers: {{user.followers_count}}</strong>
+        </p>
+      </div>
+    </script>
+
     <!-- Dependencies -->
 		<script src="/lib/jquery-2.1.4.min.js"></script>
 		<script src="/lib/underscore-min.js"></script>
@@ -45,12 +60,14 @@
 
     <!-- Modules -->
 		<script src="/Models/Tweet.js"></script>
+    <script src="/Models/Profile.js"></script>
 
     <!-- Collections -->
 		<script src="/Collections/Timeline.js"></script>
 
     <!-- View -->
 		<script src="/Views/TimelineView.js"></script>
+    <script src="/Views/profileView.js"></script>
 
     <!-- Router -->
 		<script src="/Routers/AppRouter.js"></script>
