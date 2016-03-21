@@ -13,36 +13,19 @@ var VehicleView = Backbone.View.extend({
 		'click .delete': 'onDelete'
 	},
 
-	initialize: function(){
-		this.model.on('remove', this.onRemove, this)
-	},
-
-	onRemove: function(){
-			console.log('epa');
-	},
-
 	onDelete: function(){
-
-		console.log(this.model.id);
-		var vehicle = new Vehicle({ id: this.model })
-		//this.model.destroy()
-		console.log(vehicle);
-		this.model.collection.remove(vehicle)
-		// this.$('li#' + vehicle.id).remove();
-
+		this.remove()
 	},
 
 	render: function(){
 		this.$el.html(this.model.get('registrationNumber') + ' <button class="delete">Delete</button>');
 		this.$el.attr('data-color', this.model.get('color'));
-		//this.$el.attr('id', this.model.id);
 		return this;
 	}
 });
 
 var VehiclesView = Backbone.View.extend({
 	tagName: 'ul',
-
 
 	render: function(){
 		var self = this;
