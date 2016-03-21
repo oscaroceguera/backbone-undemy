@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="songs"></ul>
+
+		<ul id="vehicles"></ul>
+
+		<script id="songTemplate" type="text/html">
+			<%= title %>
+			<button>Listen</button>
+			<% if (plays > 1000) { %>
+				<span class='popular'>Popular</span>
+			<% } %>
+		</script>
+
+		<script src="lib/jquery-1.9.1.js"></script>
+		<script src="lib/underscore.js"></script>
+		<script src="lib/backbone.js"></script>
+		<script src="js/binding-tigger-custom-events.js"></script>
+	</body>
+</html>
